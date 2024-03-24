@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>axys</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="social.css">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="images/social.png">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="circle"></div>
+    <header>
+      <div class="top">
+        <a href="index.html"><h2 class="aboutme">About Me</h2></a>
+        <h2 class="social">Social</h2>
+      </div>
+    </header>
+    <div id="container">
+      <div class="card">
+        <h1 class="title discord">Discord</h1>
+        <img id="discord" src="social/discord.svg" class="image" alt="Link">
+      </div>
+      <div class="card">
+        <h1 class="title youtube">YouTube</h1>
+        <img id="youtube" src="social/youtube.svg" class="image" alt="Link">
+      </div>
+      <div class="card">
+        <h1 class="title twitter">𝕏</h1>
+        <img id="twitter" src="social/twitter.svg" class="image" alt="Link">
+      </div>
+      <div class="card">
+        <h1 class="title github">GitHub</h1>
+        <img id="github" src="social/github.svg" class="image" alt="Link">
+      </div>
+    </div>
+    <script>
+      function openUrlInNewTab(url) {
+        window.open(url, '_blank');
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var circle = document.getElementById('circle');
+        var imageClassName = 'image';
+        var titleClassName = 'title';
+        var debounceDelay = 10; // Adjust this value to your needs
+        var lastExecutionTime = 0;
+
+        // Define styles outside of the function to avoid redefining them on each mouse move
+        var styles = {
+          image: {
+            backgroundColor: 'white',
+            filter: 'opacity(0.6)',
+            mixBlendMode: 'difference'
+          },
+          title: {
+            backgroundColor: 'white',
+            filter: 'brightness(0) invert(1)',
+            mixBlendMode: 'difference',
+          },
+          top: {
+            backgroundColor: 'black',
+            filter: 'none',
+            mixBlendMode: 'normal'
+          },
+          default: {
+            backgroundColor: 'white',
+            filter: 'none',
+            mixBlendMode: 'normal'
+          }
+        };
+
+        function updateCirclePosition(event) {
+          var now = Date.now();
+
+          if (now - lastExecutionTime < debounceDelay) {
+            return;
+          }
+
+          lastExecutionTime = now;
+
+          var x = event.pageX;
+          var y = event.pageY;
+
+          circle.style.transform = `translate(${x - 25}px, ${y - 25}px)`;
+
+          var hoveredElement = document.elementFromPoint(event.clientX, event.clientY);
+          if (hoveredElement) {
+            if (hoveredElement.classList.contains(imageClassName)) {
+              Object.assign(circle.style, styles.image);
+            } else if (hoveredElement.classList.contains(titleClassName)) {
+              Object.assign(circle.style, styles.title);
+            } else if (hoveredElement.classList.contains('top')) {
+              Object.assign(circle.style, styles.top);
+              updateTextColors('black');
+            } else {
+              Object.assign(circle.style, styles.default);
+              updateTextColors('white');
+            }
+          }
+        }
+
+        function updateTextColors(color) {
+          var socialElement = document.querySelector('h2.social');
+          var aboutMeElement = document.querySelector('h2.aboutme');
+          if (socialElement) socialElement.style.color = color;
+          if (aboutMeElement) aboutMeElement.style.color = color;
+        }
+
+        document.addEventListener('mousemove', updateCirclePosition);
+        circle.style.opacity = '1';
+
+  var cards = document.getElementsByClassName('image');
+  var urls = {
+    'discord': 'https://discord.com/users/300166112874725376',
+    'youtube': 'https://www.youtube.com/channel/UCYGl0Cs-Nc2rYD7t_LCg0vw',
+    'twitter': 'https://twitter.com/itzasyran',
+    'github': 'https://github.com/ItzAsyran'
+  };
+
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].addEventListener('click', function() {
+      openUrlInNewTab(urls[this.id]);
+    });
+  }
+});
+    </script>
+  </body>
+</html>

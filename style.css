@@ -1,0 +1,245 @@
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'Inter var', 'Unbounded', sans-serif;
+  }
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('ov-cotin.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: #2c2c2c;
+  background: #dadada;
+  font-family: 'SF Pro', 'Inter', 'Unbounded', sans-serif;
+  overflow: hidden;
+}
+
+#bg {
+  background-image: url('images/grid2.png');
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.overlay {
+  animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    filter:blur(10px);
+  }
+  to { 
+    opacity: 1;
+    filter:blur(0px);
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+body:hover > #trailer {
+  opacity: 1;
+}
+
+#trailer {
+  height: 30px;
+  width: 30px;
+  background-color: rgb(255, 255, 255);
+  mix-blend-mode: normal;
+  border-radius: 20px;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transition: mix-blend-mode 500ms ease;
+  display: grid;
+  place-items: center;
+  transition: ease-in-out 0.3s;
+}
+
+.container.slide-left {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#trailer[data-hover="true"] {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  mix-blend-mode: exclusion;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  z-index: 100;
+}
+
+.pfp, #pfp {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  -webkit-user-drag: none;
+}
+
+.text {
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: normal;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 24px;
+  margin: 0;
+}
+
+#job, .name, .aboutme {
+  font-family: "Unbounded";
+}
+
+#job {
+  font-weight: 900;
+  font-size: 2rem;
+  line-height: 48px;
+  margin-bottom: 3vh;
+  color: rgb(71, 71, 71);
+  margin-top: 10vh;
+}
+
+#logo {
+  position: relative;
+  width: auto;
+  height: 30vh;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0px 0px 10px #00000086);
+}
+
+#desc {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.6rem;
+  line-height: 38px;
+  backdrop-filter: blur(10px);
+}
+
+.aboutme,
+.social {
+  position: fixed;
+  top: 3%;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 38px;
+  color: #000000;
+  font-family: 'Inter';
+  font-style: normal;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 1;
+}
+
+.aboutme {
+  right: 10%;
+  margin-right: 2rem;
+  font-weight: bold;
+}
+
+.social {
+  right: 5%;
+}
+
+a {
+text-decoration: none;
+color: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1::selection, p::selection {
+  background: #4b328d; /* your color here */
+  color: white; /* text color */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+@media only screen and (max-width: 1170px) {
+  .aboutme {
+    top: 3%;
+    left: 5%;
+  }
+
+  .social {
+    top: 3%;
+    right: 5%;
+  }
+
+  .container {
+    flex-direction: column;
+    padding-top: 10%;
+  }
+
+  .img {
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 10vw;
+  }
+
+  #job, #name, #desc {
+    text-align: center;
+  }
+
+  #job {
+    padding-top: 1vh;
+    font-size: 6vw;
+  }
+
+  .line {
+    justify-content: center;
+  }
+
+  .name {
+    font-size: 5vw;
+  }
+
+  #desc {
+    font-size: 3.6vw;
+  }
+
+  #logo {
+    position: relative;
+    left: 0;
+    width: auto;
+    height: 20vh;
+  }
+}
